@@ -299,6 +299,8 @@ if ~ defined __STDIO_INC_INCLUDED__
 	define ICMPV6_FILTER_BLOCKOTHERS	3
 	define ICMPV6_FILTER_PASSONLY		4
 
+	define ICRNL	0x100
+
 	;	Definitions for MLDv2
 
 	define MLD2_MODE_IS_INCLUDE		1
@@ -353,6 +355,8 @@ if ~ defined __STDIO_INC_INCLUDED__
 	define IPPROTO_UDP      17
 	define IPPROTO_GRE      47
 	define IPPROTO_ICMPV6   58
+
+	define ISIG            0x00001
 
 	define ITIMER_REAL     0
 	define ITIMER_VIRTUAL  1
@@ -653,6 +657,7 @@ if ~ defined __STDIO_INC_INCLUDED__
 	ext proto freeaddrinfo, qword
 	ext proto fseek, qword, qword, dword
 	ext proto fstat, qword, qword
+	ext proto fsync, dword
 	ext proto ftell, qword
 	ext proto ftruncate, dword, dword               ; edi = fd, esi = length
 	ext proto fwrite, qword, qword, qword, qword    ; Same as fread()
@@ -689,6 +694,7 @@ if ~ defined __STDIO_INC_INCLUDED__
 	ext proto inet_pton, dword, qword, qword		; af, src, dst
 	ext proto localtime, qword                      ; rdi = *POSIX TIME variable
 	ext proto localtime_r, qword, qword				; *timep, *result
+	ext proto lseek, dword, qword, dword			; fd, offset, whence
 	ext proto malloc, qword                        ; rdi = number of bytes to allocate
 	ext proto mkdir, qword, dword
 	ext proto mkfifo, qword, dword                  ; rdi = *pathname, esi = mode
@@ -795,6 +801,7 @@ if ~ defined __STDIO_INC_INCLUDED__
 	ext proto truncate, qword, dword
 	ext proto unlink, qword                         ; rdi = char path filename to be removed
 	ext proto unlockpt, dword                       ; edi = int file descriptor
+	ext proto unsetenv, qword						; rdi = *name
 	ext proto usleep, qword                         ; edi = microsseconds to sleep
 	ext proto vasprintf, qword, qword, qword        ; **strp, *fmt, va_list
 	ext proto vdprintf, dword, qword, qword
